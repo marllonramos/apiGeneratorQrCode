@@ -16,9 +16,10 @@ namespace apiQrCode.Api.Controllers
         [Route("")]
         public ActionResult Get([FromBody]ContentQrCode content)
         {
-            var environmentVar = Environment.GetEnvironmentVariable("DATABASE_URL");
+            // var environmentVar = Environment.GetEnvironmentVariable("DATABASE_URL");
             QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
-            var json = JsonConvert.SerializeObject(content.Text + environmentVar);
+            // var json = JsonConvert.SerializeObject(content.Text + environmentVar);
+            var json = JsonConvert.SerializeObject(content.Text);
 
             QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode(json.Substring(1, json.Length - 2), QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
